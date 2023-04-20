@@ -1,0 +1,26 @@
+.Train {
+    background-color: black;
+    color: white;
+    height: 100vh;
+    overflow-y: scroll;
+    width: 100%;
+}
+
+h1 {
+    margin: 20px;
+}
+
+ul {
+    list-style: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    padding: 10px;
+    min-height: 75px;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    cursor: pointer;
+}
