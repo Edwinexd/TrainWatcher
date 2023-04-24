@@ -55,7 +55,7 @@ function Train() {
                 return;
             }
             let estimatedArrivalTime;
-            if (trainData.estimatedArrivalTime) {
+            if (trainData.EstimatedTimeAtLocation) {
                 estimatedArrivalTime = moment(trainData.EstimatedTimeAtLocation);
             } else {
                 estimatedArrivalTime = moment(trainData.AdvertisedTimeAtLocation);
