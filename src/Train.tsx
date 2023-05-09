@@ -2,6 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
 import './Train.css';
+import { ToastContainer, Slide, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Train() {
     const { trainId } = useParams();
@@ -35,16 +37,24 @@ function Train() {
                 }
             }
         } catch (error) {
+            toast.warn("Failed to fetch train info from Trafikverket API", {
+                position: "bottom-center",
+                autoClose: 30000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                transition: Slide,
+                theme: "dark",
+            });
             console.error(error);
-            // TODO: Display warning to user
         }
     }, [home, work, trainId]);
 
     useEffect(() => {
-        console.log(1)
         const interval = setInterval(() => {
             fetchData();
-        }, 5000); // Fetch data every five seconds
+        }, 30000); // Fetch data every thirty seconds
 
         return () => clearInterval(interval);
     }, [fetchData]);
@@ -90,10 +100,24 @@ function Train() {
         <div className="Train">
             <h1>Train {trainId}</h1>
             <h2>Arrival: {countdownTime}</h2>
-            <h2>Disembarkation: {disembarkationDirection}</h2>
-            <h2>Track: {track}</h2>
-            {/* Color yellow if delay is not null */}
+            {/* Display a right arrow if disembarkationDirection is Right, left arrow if direction is left otherwise no arrow */}            
+            <h2>Disembarkation: {disembarkationDirection} {disembarkationDirection === 'Right' ? <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" height="1.5em"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" /></svg> : disembarkationDirection === 'Left' ? <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" height="1.5em"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12H4.5m0 0l6.75-6.75M4.5 12l6.75 6.75" /></svg> : ''} </h2>
+            <h2>Track: {track} </h2>
             <h2 style={{ color: delay ? 'yellow' : 'white' }}>Delay: {delay}</h2>
+            <ToastContainer
+                position="bottom-center"
+                autoClose={30000}
+                limit={1}
+                hideProgressBar={false}
+                newestOnTop
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable={false}
+                pauseOnHover
+                theme="dark"
+            />
+
         </div>
     );
 }

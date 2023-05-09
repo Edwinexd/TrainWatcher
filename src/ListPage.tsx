@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import './ListPage.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import moment from 'moment';
+import { ToastContainer, Slide, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ListPage() {
     const navigate = useNavigate();
@@ -30,6 +32,16 @@ function ListPage() {
                 // items = output;
                 setItems(output);
             } catch (error) {
+                toast.error("Failed to retrive arrivals from Trafikverket API", {
+                    position: "bottom-center",
+                    autoClose: 10000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: false,
+                    transition: Slide,
+                    theme: "dark",
+                });
                 console.error(error);
             }
         };
@@ -57,6 +69,19 @@ function ListPage() {
                     </li>
                 ))}
             </ul>
+            <ToastContainer
+                position="bottom-center"
+                autoClose={30000}
+                limit={1}
+                hideProgressBar={false}
+                newestOnTop
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable={false}
+                pauseOnHover
+                theme="dark"
+            />
         </div>
     );
 }

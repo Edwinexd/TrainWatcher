@@ -10,6 +10,10 @@ h1 {
     margin: 20px;
 }
 
+h2 {
+    margin-left: 20px;
+}
+
 ul {
     list-style: none;
     width: 100%;
