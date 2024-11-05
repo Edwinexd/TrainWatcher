@@ -3,7 +3,7 @@ A simple react app to ease commuting by showing the next arrival times for train
 Made with React and the CF Workers platform by Cloudflare.
 
 ## Usage using the hosted version
-1. Go to [https://trainwatcher.edt.cx](https://trainwatcher.edt.cx). 
+1. Go to [https://trainwatcher.edthing.com](https://trainwatcher.edthing.com). 
 2. Configure your "home" and "work" stations by going to /config/:work/:home where :work and :home are the station ids provided by the Trafikverket API.
 3. Go to / to select which station you want to see the next arrivals for.
 4. Select the next arrival to see more details about the train and it's arrival time.
